@@ -8,6 +8,10 @@ from google.cloud import bigquery
 import constant
 
 def identify_company_name(question):
+    """
+    Identifies the company name mentioned in the question using LLMs.
+    If no specific company is mentioned, returns "unknown".
+    """
     company_prompt = f"""
     You are a helpful assistant that identifies company names from financial analysis questions.
     Please identify the company name mentioned in the question below. If no specific company is mentioned, return "Unknown".
@@ -21,6 +25,10 @@ def identify_company_name(question):
     return company_name.lower()
 
 def classify_question(question):
+    """
+    Classifies the user's question into one of the predefined categories using LLMs.
+    Categories: balance_sheet, income_statement, others
+    """
     classification_prompt = f"""
     You are a helpful assistant that classifies financial analysis questions.
     Please classify question below into one of the following items and return the item name without explanation.
@@ -37,6 +45,8 @@ def classify_question(question):
     return purpose
 
 def retrieve_causal_info(purpose):
+    """
+    Retrieves the causal graph and sentiments among variables from BigQuery based on the purpose."""
     client = bigquery.Client(project=constant.GCP_PROJECT_ID)
     query = f"""
         SELECT causal_graph, sentiment
@@ -58,6 +68,9 @@ def retrieve_causal_info(purpose):
         return None, None
 
 def analyze_facts(question, purpose, causal_graph, sentiments):
+    """
+    Analyzes facts from data based on the question, causal graph and sentiments among variables.
+    """
     annual_csv_path = os.path.join('data',  purpose + '.csv')
     annual_df = pd.read_csv(annual_csv_path)
     sample = annual_df.head(1)
@@ -100,9 +113,7 @@ def analyze_facts(question, purpose, causal_graph, sentiments):
 
     for i in range(MAX_LOOP):
         print(f"\n=================4.1 Code Generation Attempt {i+1} =================\n")
-        #if i > 0:
-        #    analytics_prompt = analytics_prompt + f"\n\n# Error encountered in previous code execution:\n{error_msg}\n# \n请根据上述错误信息修正并重新生成。"
-    
+        
         analytics_prompt = analytics_prompt.format(
                 graph=causal_graph,
                 sentiment=sentiments,
@@ -140,6 +151,9 @@ def analyze_facts(question, purpose, causal_graph, sentiments):
     return analyzed_facts
 
 def get_insights(question, causal_graph, sentiments, analyzed_facts):
+    """
+    Generates insights using LLMs based on the causal graph, sentiments among variables and analyzed facts
+    """
     insights_prompt = """
     You are a Causal Model that is good at answering Why question with cause-effect and facts
     Please answer the following question based on the causal graph, sentiments among variables and facts provided:
@@ -182,6 +196,13 @@ def vector_search(question: str):
     # Use LLM to generate the full SQL query with appropriate filters
     sql_prompt = f"""
     You are a helpful assistant that writes BigQuery SQL for semantic search in a table of PDF chunks.
+
+    ## WORKFLOW
+    1. Analyze the question to determine if it mentions a specific company_name and/or report_year (which could be a specific year or a range).
+    2. If company_name and/or report_year is mentioned, extract their values for filtering.
+    3. Generate a SQL query that uses the VECTOR_SEARCH and pre-filters the table by company_name and report_year if applicable.
+    
+    ## REQUIREMENTS
     Given the question below, generate a SQL query that:
     - Pre-filters the `{constant.GCP_PROJECT_ID}.{constant.BIGQUERY_DATASET}.{constant.TAB_PDF_CHUNKS_EMBEDDING}` table by company_name and report_year (which could be a specific year or a range) if mentioned in the question.
     - Uses VECTOR_SEARCH to find the top 5 most relevant chunks based on the question embedding.
@@ -237,6 +258,9 @@ def vector_search(question: str):
     return chunks
 
 def finalize_answer(question, insights, chunks):
+    """
+    Generates the final answer using LLMs based on the insights and supporting evidence (chunks).
+    """
     final_prompt = """
     You are a financial analyst assistant.
     Based on the insights below and the supporting evidence (chunks), please generate a comprehensive and concise final answer to the user's question.
@@ -312,15 +336,17 @@ def main(question):
         print("Failed to analyze facts from data.")
         return
     
+    #5. Generates insights using LLMs based on the causal graph, sentiments among variables and analyzed facts
     print("\n=================5. Insights Generation =================\n")
     insights = get_insights(question, causal_graph, sentiments, analyzed_facts)
     print(insights)
 
+    #6. Use vector search to find the most relevant chunks from the PDF embeddings table
     print("\n=================6. Vector Search =================\n")
     chunks = vector_search(question)
     print(f"Retrieved {len(chunks)} relevant chunks from vector search.")
 
-
+    #7. Generates the final answer using LLMs based on the insights and supporting evidence (chunks).
     print("\n=================7. Final Answer Generation =================\n")
     final_answer = finalize_answer(question, insights, chunks)
     print(final_answer)

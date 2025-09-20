@@ -51,20 +51,3 @@ def completion(
         break # We expect only one row for a single prompt
 
     return full_response
-
-"""
-def flatten_prompt_to_single_line(prompt_string):
-  # Replace newline characters with spaces
-  single_line_prompt = prompt_string.replace('\n', ' ')
-  # Replace multiple spaces with a single space
-  single_line_prompt = re.sub(r'\s+', ' ', single_line_prompt).strip()
-  return single_line_prompt
-  # --- This is a new constant section for Google Cloud Settings ---
-class GoogleCloudConstant:
-    # Replace with your Google Cloud project ID
-    PROJECT_ID = "bigquery-hackathon-470303"
-    # Replace with the region you are using for BigQuery (e.g., "US", "EU")
-    LOCATION = "us"
-    # Replace with the BigQuery dataset and model name you created in the prerequisites
-    MODEL_ID = "gemini_25_flash"
-"""
