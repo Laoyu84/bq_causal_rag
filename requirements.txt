@@ -11,7 +11,7 @@ googleapis-common-protos==1.70.0
 grpcio==1.75.0
 grpcio-status==1.75.0
 idna==3.10
-numpy==2.2.6
+numpy<2
 packaging==25.0
 pandas==2.3.2
 proto-plus==1.26.1
