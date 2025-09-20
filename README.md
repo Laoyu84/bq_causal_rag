@@ -13,7 +13,7 @@ Causal RAG is an AI agent designed to answer complex financial questions by comb
 - **Scalable and Cost-Efficient:** Avoids loading entire datasets into foundation models, reducing cost and improving stability.
 
 ## Architecture
-![Causal RAG Architecture](images/architecture.png)
+![Causal RAG Architecture](images/Architecture.png)
 
 1. **Preparation:** Parse queries and classify user intentions.
 2. **Facts & Insights Generation:** Generate executable code to extract facts; insights are produced using a foundation model.
@@ -22,18 +22,12 @@ Causal RAG is an AI agent designed to answer complex financial questions by comb
 
 ## Evaluation
 
-![Evaluation Result](images/evaluation.png)
+![Evaluation Result](images/Evaluation.png)
 
 - Outperforms baseline RAG in both basic calculations and complex causal questions.
 - More stable and scalable than using foundation models like Gemini 2.5 Pro alone.
 - Excels in trend analysis and multi-document reasoning.
 
-## Future Work
-
-- Extend approximations to other financial statements (cash flow, risk disclosures, etc.).
-- Integrate probabilistic causal modeling and external signals.
-- Dynamically assign roles to more powerful models for deeper reasoning.
-- Generalize framework to other domains (healthcare, supply chain, customer analytics).
 
 ## Getting Started
 
