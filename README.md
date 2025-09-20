@@ -44,7 +44,7 @@ git clone https://github.com/Laoyu84/bq_causal_rag
 cd bq_causal_rag
 pip install -r requirements.txt
 python causal_rag.py
-# if root permission is required for Google Cloud auth, run:
+# if root permission is required for Google Cloud auth, run following command instead:
 sudo python causal_rag.py
 
 ```
