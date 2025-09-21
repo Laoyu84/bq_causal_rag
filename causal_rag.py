@@ -112,7 +112,7 @@ def analyze_facts(question, purpose, causal_graph, sentiments):
     code_generated = None
 
     for i in range(MAX_LOOP):
-        print(f"\n=================4.1 Code Generation Attempt {i+1} =================\n")
+        #print(f"\n=================4.1 Code Generation Attempt {i+1} =================\n")
         
         analytics_prompt = analytics_prompt.format(
                 graph=causal_graph,
@@ -128,7 +128,7 @@ def analyze_facts(question, purpose, causal_graph, sentiments):
         )
 
         code_generated = code_generated.replace("```python", "").replace("```", "").strip()
-        print(code_generated)
+        #print(code_generated)
 
         stdout_buffer = io.StringIO()
         try:
@@ -146,8 +146,8 @@ def analyze_facts(question, purpose, causal_graph, sentiments):
             analyzed_facts = f"Error: {error_msg}"
         finally:
             sys.stdout = sys_stdout
-            print("\n=================4.2 Facts =================\n")
-            print(analyzed_facts) 
+            #print("\n=================4.2 Facts =================\n")
+            #print(analyzed_facts) 
     return analyzed_facts
 
 def get_insights(question, causal_graph, sentiments, analyzed_facts):
@@ -248,11 +248,11 @@ def vector_search(question: str):
     sql_code = completion(sql_prompt, temperature=0.1).strip()
     # Remove code block markers if present
     sql_code = sql_code.replace("```sql", "").replace("```", "").strip()
-    print("--- Generated SQL ---\n", sql_code)
+    #print("--- Generated SQL ---\n", sql_code)
 
     # Only set the @query parameter, as company_name and report_year are already in the generated SQL
     query_params = [bigquery.ScalarQueryParameter("query", "STRING", question)]
-    print("Executing search query with parameters: {'query': question}")
+    #print("Executing search query with parameters: {'query': question}")
     results = client.query(sql_code, job_config=bigquery.QueryJobConfig(query_parameters=query_params)).result()
     chunks = [row.chunk_text for row in results]
     return chunks
@@ -335,11 +335,12 @@ def main(question):
     if not analyzed_facts:
         print("Failed to analyze facts from data.")
         return
-    
+    print("Fact analyzed... ")
+
     #5. Generates insights using LLMs based on the causal graph, sentiments among variables and analyzed facts
     print("\n=================5. Insights Generation =================\n")
     insights = get_insights(question, causal_graph, sentiments, analyzed_facts)
-    print(insights)
+    print("Insights Generated...")
 
     #6. Use vector search to find the most relevant chunks from the PDF embeddings table
     print("\n=================6. Vector Search =================\n")
