@@ -1,0 +1,28 @@
+Apache License  
+Version 2.0, January 2004  
+http://www.apache.org/licenses/
+
+TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+[Full Apache License 2.0 Text]
+
+---
+
+Commons Clause Restriction  
+“Commons Clause” License Condition v1.0
+
+The Software is provided under the Apache License 2.0, except that the following additional restriction applies:
+
+The grant of rights under the Apache License does **not** include, and the following rights are **expressly excluded**:
+
+You may **not** sell, license, distribute, or otherwise make the Software or a derivative work available for **commercial purposes**, including without limitation providing the Software to third parties as a hosted or managed service, or including the Software in a commercial offering, **without obtaining a separate commercial license** from the Licensor.
+
+For the purposes of this clause, “Sell” means practicing any or all of the rights granted to you under the Apache License for **commercial advantage or monetary compensation**.
+
+---
+
+Software: causal_rag  
+Copyright (c) 2025 Lao Yu  
+Licensor: Lao Yu (uncleyu89@gmail.com)
+
+This software is licensed under the Apache License, Version 2.0, with the Commons Clause restriction above.

@@ -1,5 +1,7 @@
 # CAUSAL RAG
 
+![License: Apache 2.0 + Commons Clause](https://img.shields.io/badge/License-Apache%202.0%20+%20Commons%20Clause-blue.svg)
+
 **Integrating Causal Graphs and Generative AI for Reliable Fact Extraction and Deep Reasoning**
 
 Causal RAG is an AI agent designed to answer complex financial questions by combining causal graphs, sentiment analysis, and structured data with BigQuery’s native generative AI and vector search. It extends traditional Retrieval-Augmented Generation (RAG) to provide accurate, interpretable insights for both straightforward and non-obvious “what” and “why” questions.
@@ -43,3 +45,31 @@ sudo python causal_rag.py
 
 ```
 Public dataset: `bigquery-hackathon-470303.hackathon_bigquery`
+
+## 📘 License
+
+**License:** Apache 2.0 + Commons Clause — *Non-commercial use only.*  
+For commercial inquiries, please contact **uncleyu89@gmail.com**.  
+See the full license text in [LICENSE](./LICENSE).
+
+---
+
+## 🧩 Citation
+
+If you use this work in your research or software, please cite it as:
+
+**Plain text:**
+> Lao Yu (2025). *Causal RAG: Integrating Causal Graphs and Generative AI for Reliable Fact Extraction and Deep Reasoning.*  
+> Available at: https://github.com/Laoyu84/bq_causal_rag
+
+**BibTeX:**
+```bibtex
+@software{causal_rag_2025,
+  author = {Lao Yu},
+  title = {{Causal RAG}: Integrating Causal Graphs and Generative AI for Reliable Fact Extraction and Deep Reasoning},
+  year = {2025},
+  url = {https://github.com/Laoyu84/bq_causal_rag},
+  license = {Apache-2.0 + Commons Clause}
+}
+
+
