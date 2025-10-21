@@ -1,28 +1,27 @@
-Apache License  
-Version 2.0, January 2004  
-http://www.apache.org/licenses/
+Creative Commons Attribution 4.0 International License (CC BY 4.0)
 
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+Copyright (c) 2025 Lao Yu
 
-[Full Apache License 2.0 Text]
+You are free to:
 
----
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material
+for any purpose, even commercially.
 
-Commons Clause Restriction  
-“Commons Clause” License Condition v1.0
+Under the following terms:
 
-The Software is provided under the Apache License 2.0, except that the following additional restriction applies:
+- **Attribution** — You must give appropriate credit, provide a link to the license, 
+  and indicate if changes were made. You may do so in any reasonable manner, 
+  but not in any way that suggests the licensor endorses you or your use.
 
-The grant of rights under the Apache License does **not** include, and the following rights are **expressly excluded**:
+- **No additional restrictions** — You may not apply legal terms or 
+  technological measures that legally restrict others from doing anything the license permits.
 
-You may **not** sell, license, distribute, or otherwise make the Software or a derivative work available for **commercial purposes**, including without limitation providing the Software to third parties as a hosted or managed service, or including the Software in a commercial offering, **without obtaining a separate commercial license** from the Licensor.
+Full License Text:
+https://creativecommons.org/licenses/by/4.0/legalcode
 
-For the purposes of this clause, “Sell” means practicing any or all of the rights granted to you under the Apache License for **commercial advantage or monetary compensation**.
+Attribution should be given as:
 
----
-
-Software: causal_rag  
-Copyright (c) 2025 Lao Yu  
-Licensor: Lao Yu (uncleyu89@gmail.com)
-
-This software is licensed under the Apache License, Version 2.0, with the Commons Clause restriction above.
+> Lao Yu (2025). *Causal RAG: Integrating Causal Graphs and Generative AI for Reliable Fact Extraction and Deep Reasoning.*  
+> Available at: https://github.com/Laoyu84/bq_causal_rag  
+> Licensed under CC BY 4.0.
